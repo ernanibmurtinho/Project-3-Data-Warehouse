@@ -221,15 +221,15 @@ def clean_iam_roles():
 
 def main():
     
-    #create_iam_roles()
-    #create_redshift_cluster()
-    #myClusterProps = redshift.describe_clusters(ClusterIdentifier=DWH_CLUSTER_IDENTIFIER)['Clusters'][0]
-    #prettyRedshiftProps(myClusterProps)
-    #get_endpoint_arn_redshift()
+    create_iam_roles()
+    create_redshift_cluster()
+    myClusterProps = redshift.describe_clusters(ClusterIdentifier=DWH_CLUSTER_IDENTIFIER)['Clusters'][0]
+    prettyRedshiftProps(myClusterProps)
+    get_endpoint_arn_redshift()
     
     #To clean the environment, uncomment these two lines below(and comment the other, as you don't need to run it again):
-    clean_redshift_cluster()
-    clean_iam_roles()
+    #clean_redshift_cluster()
+    #clean_iam_roles()
  
     conn = psycopg2.connect("host={} dbname={} user={} password={} port={}".format(*config['CLUSTER'].values()))
     print("connecting to database")
