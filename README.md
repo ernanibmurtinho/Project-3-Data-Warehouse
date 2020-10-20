@@ -51,8 +51,9 @@ log_data/2018/11/2018-11-13-events.json
 And below is an example of what the data in a log file, 2018-11-12-events.json, looks like.
 
 
-artist | auth | firstName | gender | itemInSession | lastName | length | level | location | method | page | registration | sessionId | song | status | ts | userAgent | userId 
+| artist | auth | firstName | gender | itemInSession | lastName | length | level | location | method | page | registration | sessionId | song | status | ts | userAgent | userId |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                                                                                                                                                         |
 
 ```
 Sydney Youngblood Logged In Jacob M 53 Klein 238.07955 paid Tampa-St. Petersburg-Clearwater, FL PUT NextSong 1.540558e+12 954 Ain't No Sunshine 200 1543449657796 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4... 73 1 Gang Starr Logged In Layla F 88 Griffin 151.92771 paid Lake Havasu City-Kingman, AZ PUT NextSong 1.541057e+12 984 My Advice 2 You (Explicit) 200 1543449690796 "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebK... 24 2 3OH!3 Logged In Layla F 89 Griffin 192.52200 paid Lake Havasu City-Kingman, AZ PUT NextSong 1.541057e+12 984 My First Kiss (Feat. Ke$ha) [Album Version] 200 1543449841796 "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebK... 24 3 RÃ�Â¶yksopp Logged In Jacob M 54 Klein 369.81506 paid Tampa-St. Petersburg-Clearwater, FL PUT NextSong 1.540558e+12 954 The Girl and The Robot 200 1543449895796 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4... 73 4 Kajagoogoo Logged In Layla F 90 Griffin 223.55546 paid Lake Havasu City-Kingman, AZ PUT NextSong 1.541057e+12 984 Too Shy 200 1543450033796 "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebK... 24
