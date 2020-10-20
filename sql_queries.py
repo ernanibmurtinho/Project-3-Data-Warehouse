@@ -207,21 +207,6 @@ drop_table_queries = [staging_events_table_drop, staging_songs_table_drop, songp
 copy_table_queries = [staging_events_copy, staging_songs_copy]
 insert_table_queries = [user_table_insert, song_table_insert, artist_table_insert, time_table_insert, songplay_table_insert]
 
-# songplay_table_insert, , time_table_insert
-
-# FIND SONGS
-
-song_select = ("""
-SELECT 
-s.song_id, a.artist_id
-FROM songs s
-INNER JOIN artists a ON s.artist_id = a.artist_id
-WHERE
-s.title = %s
-AND a.artist_name = %s
-AND s.duration = %s
-""")
-
 
 
 
