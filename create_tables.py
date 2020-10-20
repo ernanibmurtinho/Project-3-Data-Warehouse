@@ -6,7 +6,7 @@ from sql_queries import create_table_queries, drop_table_queries
 def drop_tables(cur, conn):
     print("Dropping the tables, before start!")
     for query in drop_table_queries:
-        cur.execute('CREATE SCHEMA IF NOT EXISTS song_data;')
+        cur.execute('CREATE SCHEMA IF NOT EXISTS Sparkify;')
         cur.execute(query)
         conn.commit()
     print("Tables dropped!")
@@ -15,7 +15,7 @@ def drop_tables(cur, conn):
 def create_tables(cur, conn):
     print("Creating the tables!")
     for query in create_table_queries:
-        cur.execute('CREATE SCHEMA IF NOT EXISTS song_data;')
+        cur.execute('CREATE SCHEMA IF NOT EXISTS Sparkify;')
         cur.execute(query)
         conn.commit()
     print("Tables created!")
