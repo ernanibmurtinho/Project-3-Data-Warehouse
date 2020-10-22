@@ -78,7 +78,7 @@ REFERENCES song_data.artists(artist_id)
 
 artist_table_create = ("""
 CREATE TABLE IF NOT EXISTS song_data.artists(
-artist_id VARCHAR PRIMARY KEY SORTKEY DISTKEY, 
+artist_id VARCHAR PRIMARY KEY SORTKEY DISTKEY NOT NULL, 
 artist_name VARCHAR NOT NULL, 
 location VARCHAR, 
 latitude VARCHAR, 
@@ -101,8 +101,8 @@ weekday BIGINT NOT NULL
 songplay_table_create = ("""
 CREATE TABLE IF NOT EXISTS song_data.songplays( 
 songplay_id INTEGER IDENTITY(0,1) SORTKEY DISTKEY, 
-start_time VARCHAR, 
-user_id VARCHAR, 
+start_time VARCHAR NOT NULL, 
+user_id VARCHAR NOT NULL, 
 level VARCHAR, 
 song_id VARCHAR, 
 artist_id VARCHAR, 
@@ -115,17 +115,10 @@ user_agent VARCHAR
 
 # STAGING TABLES
 
-staging_events_copy = ("""
-                    copy {} from {} 
-                    credentials 'aws_iam_role={}'
-                    region 'us-west-2' format as json 'auto'
-                            """).format('song_data.events', config.get("S3", "log_data"), config.get("DWH", "DWH_ROLE_ARN"))
+staging_events_copy = ['song_data', 'events', 'log_data']
 
-staging_songs_copy = ("""
-                    copy {} from {}
-                    credentials 'aws_iam_role={}'
-                    region 'us-west-2' format as json 'auto'
-                            """).format('song_data.songs', config.get("S3", "song_data"), config.get("DWH", "DWH_ROLE_ARN"))
+staging_songs_copy = ['song_data', 'songs', 'song_data']
+
 
 # FINAL TABLES
 
@@ -160,7 +153,7 @@ time_select = (""" SELECT start_time,  EXTRACT(hour from start_time_f) AS hour, 
 
 songplay_select = (""" SELECT \
                        evt.ts AS start_time, \
-                       evt.userId AS user_id, \
+                       COALESCE(evt.userId, '0' ) AS user_id, \
                        evt.level, \
                        COALESCE(sgs.song_id, '0' ) AS song_id, \
                        COALESCE( sgs.artist_id, '0' ) AS artist_id, \
@@ -205,10 +198,7 @@ INSERT INTO song_data.time (start_time, hour, day, week, month, year, weekday)
 create_table_queries = [staging_events_table_create, staging_songs_table_create, user_table_create, artist_table_create, song_table_create, time_table_create, songplay_table_create]
 drop_table_queries = [staging_events_table_drop, staging_songs_table_drop, songplay_table_drop, user_table_drop, song_table_drop, artist_table_drop, time_table_drop]
 copy_table_queries = [staging_events_copy, staging_songs_copy]
+staging_songs_copy = ['song_data', 'songs', 'song_data']
+staging_events_copy = ['song_data', 'events', 'log_data']
 insert_table_queries = [user_table_insert, song_table_insert, artist_table_insert, time_table_insert, songplay_table_insert]
-
-
-
-
-
-
+insert_table = ['user', 'song', 'artist', 'time', 'songplay']
